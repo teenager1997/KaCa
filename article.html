@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>咔嚓-记录美好瞬间。</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_nw0x7gdcs9z77gb9.css">
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	</head>
+
+	<body>
+		<!-- header start -->
+		<div class="header">
+			<div class="h_nav clearboth">
+				<a href="#" class="h_n_logo fl">
+					<img src="img/logo.png">
+				</a>
+				<ul class="clearboth fl">
+					<li class="h_n_title fl">
+						<a href="index.html" class="h_n_txt">首页</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="latest.html" class="h_n_txt">
+							发现
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="#" class="h_n_txt" style="color:#3498db;transition:all .2s ease;">
+							文章
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="question.html" class="h_n_txt">
+							问答
+							<i class="iconfont icon-n"></i>
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="#" class="h_n_txt">
+							更多
+							<i class="iconfont icon-xiala-copy"></i>
+						</a>
+						<ul class="hiddbox">
+							<li>
+								<a href="#" class="hiddtxt">创意汇</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">话题</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">灵感</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">工具</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="h_n_register fr">
+					<a href="#" class="h_n_txt fl">
+						<span class="icon"><em>登录</em></span>
+					</a>
+					<a href="register.html" class="h_n_txt fl">
+						<span class="icon"><em>注册</em></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="gray"></div>
+
+		<div class="popup" id="popup">
+
+			<div class="top_nav" id='top_nav'>
+				<div align="center">
+					<span>登录账号</span>
+					<a class="guanbi"></a>
+				</div>
+			</div>
+
+			<div class="min">
+
+				<div class="tc_login">
+
+					<div class="left">
+						<h4 align="center">扫一扫，联系我们</h4>
+						<div align="center"><img src="img/weixin.jpg" width="150" height="150" /></div>
+					</div>
+
+					<div class="right">
+						<form method="POST" name="form_login" target="_top">
+							<div align="center">
+								<a href="#">短信快捷登录</a>
+								<i class="icon-mobile-phone"></i>
+								<input type="text" name="name" id="name" required="required" placeholder="用户名" autocomplete="off" class="input_yh">
+								<input type="password" name="pass" id="pass" required="required" placeholder="密码" autocomplete="off" class="input_mm">
+							</div>
+							<dd>
+								<div align="center">
+									<a href="#">遇到登录问题</a>
+								</div>
+							</dd>
+							<div align="center">
+								<input type="submit" class="button" title="Sign In" value="登录">
+							</div>
+						</form>
+						<dd>
+							<div align="center">
+								<a href="register.html" target="_blank">立即注册</a>
+							</div>
+						</dd>
+						<hr align="center" />
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			//窗口效果
+			//点击登录class为h_n_register 显示
+			$(".h_n_register").click(function() {
+				$("#gray").show();
+				$("#popup").show(); //查找ID为popup的DIV show()显示#gray
+				tc_center();
+			});
+			//点击关闭按钮
+			$("a.guanbi").click(function() {
+				$("#gray").hide();
+				$("#popup").hide(); //查找ID为popup的DIV hide()隐藏
+			})
+
+			//窗口水平居中
+			$(window).resize(function() {
+				tc_center();
+			});
+
+			function tc_center() {
+				var _top = ($(window).height() - $(".popup").height()) / 2;
+				var _left = ($(window).width() - $(".popup").width()) / 2;
+
+				$(".popup").css({
+					top: _top,
+					left: _left
+				});
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".top_nav").mousedown(function(e) {
+					$(this).css("cursor", "move"); //改变鼠标指针的形状 
+					var offset = $(this).offset(); //DIV在页面的位置 
+					var x = e.pageX - offset.left; //获得鼠标指针离DIV元素左边界的距离 
+					var y = e.pageY - offset.top; //获得鼠标指针离DIV元素上边界的距离 
+					$(document).bind("mousemove", function(ev) { //绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件 
+
+						$(".popup").stop(); //加上这个之后 
+
+						var _x = ev.pageX - x; //获得X轴方向移动的值 
+						var _y = ev.pageY - y; //获得Y轴方向移动的值 
+
+						$(".popup").animate({
+							left: _x + "px",
+							top: _y + "px"
+						}, 10);
+					});
+
+				});
+
+				$(document).mouseup(function() {
+					$(".popup").css("cursor", "default");
+					$(this).unbind("mousemove");
+				});
+			})
+		</script>
+		<!-- header end -->
+
+		<!-- essay start -->
+		<div class="essay">
+			<!-- marbox start -->
+			<div class="marbox clearboth">
+				<!-- leftcont start -->
+				<div class="e_leftcont fl">
+					<header class="comm-title all-article-title">
+						<h2 class="fl tc">
+								<span class="c-333">文章</span>
+							</h2>
+					</header>
+					<ul>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s7.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box"><font class="jinghua_top font12 mar_r10">精华</font>墙外干货：如何利用另类视角，让照片与众不同？</span>
+								</h5>
+									<p>别在乎器材和镜头，用好自己的手机也能出大片；换个视角看世界，让你的照片与众不同。</p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s8.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box"><font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">推荐</font>经验观点：自然景观，最好的时机是日出日落前后，或者是阴天雨天的戏剧化天空下。</span>
+								</h5>
+									<p>这不仅仅是一篇经验，而是前辈用日积月累得工作心得，用笔记用脑想，最重要得是要走心。还有我是占位符不是简介。</p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s9.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box"><font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">推荐</font>墙外干货：摄影必须要后期吗？旅游用要拍很多照片没有精力，后期怎么办？</span>
+								</h5>
+									<p>后期是数码时代的名词，在胶片时代，我们叫“冲洗胶片”，目的都一样，就是不放过控制影像输出的每一个步骤，以达到自己想要的最终效果。</p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s10.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box"><font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">推荐</font>墙外干货：摄影师在拍摄中玩火 背后竟是……</span>
+								</h5>
+									<p>近段时间，摄影师陈墨墨出了一组冒着“火焰”的人像片子，网友看后都觉得难度不小，并且非常担心模特的安危。同时，大家都很好奇这样的片子到底是怎么拍出来的。这次，我们邀请到摄影师陈墨墨和修图师安泽，为你揭秘~ </p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s11.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box">
+										<font class="jinghua_top font12 mar_r10">精华</font>
+										<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">推荐</font>墙外干货：教你几招，玩转单反！</span>
+								</h5>
+									<p>雨景、雪景、烟火、雷电怎么拍？老师没教？没关系，这里通通都有~多学几招，很有必要</p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="e_l_libox">
+							<div class="e_l_border"></div>
+							<div href="#" class="e_l_abox clearboth">
+								<div class="l_a_imgbox">
+									<img src="img/s12.jpg" class="l_a_i_img">
+								</div>
+								<div class="l_a_textbox">
+									<h5>
+									<span class="a_t_h1box">
+										<font class="jinghua_top font12 mar_r10">精华</font>
+										<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">推荐</font>墙外干货：从相机原理、镜头、焦距、光圈、景深等学起，拍出自己的大片。</span>
+								</h5>
+									<p>初入摄影的你，需要形成属于自己的摄影风格、理念和素养，在这里，你不仅仅只是学习摄影技能，更多的是感受摄影之美</p>
+									<div class="clearboth writer">
+										<a href="#" class="c_aimg">
+											<img src="img/t14.jpg">
+										</a>
+										<span class="fl">
+										<i class="iconfont icon-yuedu"></i>
+										<strong>1766</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-pinglun"></i>
+										<strong>3</strong>
+									</span>
+										<span class="fl">
+										<i class="iconfont icon-dianzan"></i>
+										<strong>23</strong>
+									</span>
+										<span class="fr">
+										<i class="iconfont icon-angengxinshijian"></i>
+										<strong>9-13 15:19</strong>
+									</span>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<!--page start-->
+					<div class="page">
+						<ul class="tab">
+							<li>
+								<a href="#" class="on">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">···</a>
+							</li>
+						</ul>
+					</div>
+					<!--page end-->
+				</div>
+
+				<!-- leftcont end -->
+				<!-- rightcont start -->
+				<aside class="fr col-3">
+					<div class="mt30 pl10">
+						<section class="pt10">
+							<a href="#" title="我要提问" class="comm-btn c-btn-5">发表文章</a>
+						</section>
+						<!-- /标签云 -->
+						<section class="mt30">
+							<section class="c-infor-tabTitle c-tab-title">
+								<a href="#" title="热门文章排行">热门文章排行</a>
+							</section>
+							<div class="q-r-rank-list">
+								<ul id="hotQuestions">
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">4</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">新手竖构图入门，实例讲解教你做基础构图反思。</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">3</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">摄影师在拍摄中玩火，背后竟是……</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">2</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">这张照片怎么拍？摄影师教你拍摄魔幻静物照！</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">在樱花稀少的场景 如何拍出清新唯美的樱花人像？</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">前期+PS教程：星空下的人像。</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">资深大神跟你说实话 风光新手要接受的7个现实</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">明星们摄影都玩得那么6 你还有什么理由不努力？</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">9个吹毛求疵的要求！难道真是摄影师的通病。</a>	</h4></li>
+								</ul>
+							</div>
+						</section>
+						<!-- /热门问答排行 -->
+					</div>
+				</aside>
+
+				<!-- rightcont end -->
+			</div>
+			<!-- marbox end -->
+		</div>
+		<!-- essay end -->
+		<!-- foot start -->
+		<div class="foot clearboth">
+			<div class="f_center">
+				<div class="f_c_info">
+					<ul class="clearboth ft_nav">
+						<li class="fl">
+							<a href="#">商务合作</a>
+						</li>
+						<li class="fl">
+							<a href="#">意见反馈</a>
+						</li>
+						<li class="fl">
+							<a href="#">关于我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">联系我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">版权声明</a>
+						</li>
+						<li class="fl">
+							<a href="#">隐私保护</a>
+						</li>
+					</ul>
+					<p class="c_i_copy">
+						本站素材源自网络，如有侵权请扫取下方微信二维码联系作者.
+					</p>
+					<p class="c_i_copy">
+						Powered by © 广州现代信息工程职业技术学院 .曾董
+					</p>
+					<div class="ft_icon_logo">
+						<a href="#" class="ft_iconbox fl ft_posi">
+							<i class="iconfont icon-weixin"></i>
+							<div class="ft_hidden_show">
+
+							</div>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-xinlang"></i>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-QQ"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- foot end -->
+
+		<a href="#" onclick="gotoTop();return false;" class="totop" title="回到顶部"></a>
+	</body>
+
+</html>

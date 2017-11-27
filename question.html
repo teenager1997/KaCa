@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>咔嚓-记录美好瞬间。</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_nw0x7gdcs9z77gb9.css">
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	</head>
+
+	<body>
+		<!-- header start -->
+		<div class="header">
+			<div class="h_nav clearboth">
+				<a href="#" class="h_n_logo fl">
+					<img src="img/logo.png">
+				</a>
+				<ul class="clearboth fl">
+					<li class="h_n_title fl">
+						<a href="index.html" class="h_n_txt">首页</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="latest.html" class="h_n_txt">
+							发现
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="article.html" class="h_n_txt">
+							文章
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="question.html" class="h_n_txt" style="color:#3498db;transition:all .2s ease;">
+							问答
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="#" class="h_n_txt">
+							更多
+							<i class="iconfont icon-xiala-copy"></i>
+						</a>
+						<ul class="hiddbox">
+							<li>
+								<a href="#" class="hiddtxt">创意汇</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">话题</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">灵感</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">工具</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="h_n_register fr">
+					<a href="#" class="h_n_txt fl">
+						<span class="icon"><em>登录</em></span>
+					</a>
+					<a href="register.html" class="h_n_txt fl">
+						<span class="icon"><em>注册</em></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="gray"></div>
+
+		<div class="popup" id="popup">
+
+			<div class="top_nav" id='top_nav'>
+				<div align="center">
+					<span>登录账号</span>
+					<a class="guanbi"></a>
+				</div>
+			</div>
+
+			<div class="min">
+
+				<div class="tc_login">
+
+					<div class="left">
+						<h4 align="center">扫一扫，联系我们</h4>
+						<div align="center"><img src="img/weixin.jpg" width="150" height="150" /></div>
+					</div>
+
+					<div class="right">
+						<form method="POST" name="form_login" target="_top">
+							<div align="center">
+								<a href="#">短信快捷登录</a>
+								<i class="icon-mobile-phone"></i>
+								<input type="text" name="name" id="name" required="required" placeholder="用户名" autocomplete="off" class="input_yh">
+								<input type="password" name="pass" id="pass" required="required" placeholder="密码" autocomplete="off" class="input_mm">
+							</div>
+							<dd>
+								<div align="center">
+									<a href="#">遇到登录问题</a>
+								</div>
+							</dd>
+							<div align="center">
+								<input type="submit" class="button" title="Sign In" value="登录">
+							</div>
+						</form>
+						<dd>
+							<div align="center">
+								<a href="register.html">立即注册</a>
+							</div>
+						</dd>
+						<hr align="center" />
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			//窗口效果
+			//点击登录class为h_n_register 显示
+			$(".h_n_register").click(function() {
+				$("#gray").show();
+				$("#popup").show(); //查找ID为popup的DIV show()显示#gray
+				tc_center();
+			});
+			//点击关闭按钮
+			$("a.guanbi").click(function() {
+				$("#gray").hide();
+				$("#popup").hide(); //查找ID为popup的DIV hide()隐藏
+			})
+
+			//窗口水平居中
+			$(window).resize(function() {
+				tc_center();
+			});
+
+			function tc_center() {
+				var _top = ($(window).height() - $(".popup").height()) / 2;
+				var _left = ($(window).width() - $(".popup").width()) / 2;
+
+				$(".popup").css({
+					top: _top,
+					left: _left
+				});
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".top_nav").mousedown(function(e) {
+					$(this).css("cursor", "move"); //改变鼠标指针的形状 
+					var offset = $(this).offset(); //DIV在页面的位置 
+					var x = e.pageX - offset.left; //获得鼠标指针离DIV元素左边界的距离 
+					var y = e.pageY - offset.top; //获得鼠标指针离DIV元素上边界的距离 
+					$(document).bind("mousemove", function(ev) { //绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件 
+
+						$(".popup").stop(); //加上这个之后 
+
+						var _x = ev.pageX - x; //获得X轴方向移动的值 
+						var _y = ev.pageY - y; //获得Y轴方向移动的值 
+
+						$(".popup").animate({
+							left: _x + "px",
+							top: _y + "px"
+						}, 10);
+					});
+
+				});
+
+				$(document).mouseup(function() {
+					$(".popup").css("cursor", "default");
+					$(this).unbind("mousemove");
+				});
+			})
+		</script>
+		<!-- header end -->
+
+		<section class="question">
+			<div class="question-list">
+				<div class="cnt_box">
+					<header class="comm-title all-article-title">
+						<h2 class="fl tc">
+								<span class="c-333">最新问题</span>
+							</h2>
+					</header>
+					<section class="q-all-list">
+				<ul>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t1.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999"> goddess</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">1</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">191</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">最新</font>
+														<font class="jinghua_top font12 mar_r10">热门</font>
+														<a href="#" class="fsize16 c-333 vam">摄影必须要后期吗？旅游用要拍很多照片没有精力，后期怎么办？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																premiere是一款常用的视频编辑软件，由Adobe公司推出。现在常用的有CS4 CS5 CS6等版本。是一款编辑画面质量比较好的软件，有较好的兼容性，且可以与adobe公司推出的其他软件相互协作。目前这款软件广泛应用于广告制作和电视节目制作中。 其最新版本为Adobe Premiere Pro CC。</span>
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:31</span>
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t2.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999"> 小少爷</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">2</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">103</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10">热门</font>
+														<a href="#" class="fsize16 c-333 vam">不太会拍照，想买个单反，是佳能好还是尼康好？有啥区别？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																支持</span>
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:27</span>
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t13.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999"> 小少爷</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">3</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">84</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10">热门</font>
+														<a href="#" class="fsize16 c-333 vam">全画幅与非全画幅相机有何区别？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																我来点个赞</span>
+																
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:26</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t14.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999">Vae</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">4</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">187</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">最新</font>
+														<a href="#" class="fsize16 c-333 vam">好马要好鞍，单反搞个啥镜头来呢，初学的人会不会很难捯饬镜头，或是买个套机？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-ccc f-fM mr5">[最新回答]</tt> 分享的东西很全</span>
+																
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:16</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t15.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999">Vae</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">1</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">88</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10">热门</font>
+														<a href="#" class="fsize16 c-333 vam">什么样的相机端出去高端大气上档次？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																不错</span>
+																
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:14</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t16.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999">Vae</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">1</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">93</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">最新</font>
+														<a href="#" class="fsize16 c-333 vam">photoshop怎么抠图 ,能详细点吗</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																第一步，打开ps，打开你要修改的图片。文件---打开就可以了。
+如果你并不追求完美的效果，而只是想快速一些，就选择快速选择工具，如图所示。用鼠标点击一下这里。
+然后用鼠标左键在图片上想抠出来的区域拖动，直到选择好你想选择的区域之后，点击ctrl+c组合键复制。然后新建一个空白图片。在此空白图片上粘贴，就出现了你刚才抠出来的图片了。
+如果你想得到更完美的抠图效果 ，可以使用铅笔工具 ，如图所示。
+用钢笔工具在图像的边缘定出若二个点，如图所示，确定完成之后按crtl+回车键选择，然后复制，新建空白图片。
+7在空白图片中粘贴，刚才抠出来的图便出现了。由于时间关系 ，我的抠图并不是十分准确。</span>
+																
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:11</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t7.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999">Vae</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">0</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">77</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10">热门</font>
+														<a href="#" class="fsize16 c-333 vam">虽然有部单反神器，但是拍出来的人像有时脸黑黑的，风景照片无法直视，像褪了色、暗淡无光，很难有让人眼前一亮、心动之感，哪里出了问题？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam">哈~~~ 此问题大家还有苦思冥想中...</span>
+															
+														</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:08</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+					<li>
+						<aside class="q-head-pic">
+							<img src="img/t8.jpg">
+							<p class="hLh30 txtOf">
+								<span class="c-999">Vae</span>
+							</p>
+						</aside>
+						<section class="q-txt-box">
+							<a class="replyBrowseNum" href="#">
+								<div class="replyNum">
+									<span class="r-b-num">1</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">回答数</span>
+									</p>
+								</div>
+								<div class="browseNum">
+									<span class="r-b-num">87</span>
+									<p class="hLh30">
+										<span class="c-999 f-fA">浏览数</span>
+									</p>
+								</div>
+							</a>
+							<h3 class="hLh30 txtOf">
+														<font class="jinghua_top font12 mar_r10" style="background:#4CAF50;">最新</font>
+														<a href="#" class="fsize16 c-333 vam">选择相机是像素越高越好吗？</a>
+													</h3>
+							<h3 class="hLh30 txtOf mt5">
+														<span class="fsize12 c-999 vam"> <tt class="c-green f-fM mr5">[最佳回答]</tt> 
+																能不能详细的描述下</span>
+																
+															</h3>
+							<div class="mt15">
+								<span class="c-ccc fl vam">2015-09-10 10:07</span>
+
+								<div class="clear"></div>
+							</div>
+						</section>
+					</li>
+				</ul>
+			</section>
+					<!--page start-->
+					<div class="page">
+						<ul class="tab">
+							<li>
+								<a href="#" class="on">1</a>
+							</li>
+							<li>
+								<a href="#">2</a>
+							</li>
+							<li>
+								<a href="#">3</a>
+							</li>
+							<li>
+								<a href="#">···</a>
+							</li>
+						</ul>
+					</div>
+					<!--page end-->
+				</div>
+
+				<aside class="fr col-3">
+					<div class="mt30 pl10">
+						<section class="pt10">
+							<a href="#"  title="我要提问" class="comm-btn c-btn-5">我要提问</a>
+						</section>
+						<section class="mt30">
+							<section class="c-infor-tabTitle c-tab-title">
+								<a href="#" title="热门问答推荐">热门问答推荐</a>
+							</section>
+							<div class="q-r-rank-list">
+								<ul id="hotQuestions">
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">4</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">选择相机是像素越高越好吗？</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">3</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">冷暖色调用得好 就连手机都可以出大片</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">2</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">每天拍了又修 你真的懂什么是日系吗？</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">单反拿出来就坏了 看我如何用手机拍摄救场！</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">告别新手Zone 就靠这个10个方法</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">资深大神跟你说实话 风光新手要接受的7个现实</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">明星们摄影都玩得那么6 你还有什么理由不努力？</a>	</h4></li>
+									<li>
+										<aside class="q-r-r-num">
+											<div class="replyNum"> <span class="r-b-num">1</span>
+												<p class="hLh20"> <span class="c-999 f-fA">回答数</span> </p>
+											</div>
+										</aside>
+										<h4 class="hLh30 txtOf">		<em class="icon16 q-tw">&nbsp;</em>		<a href="#" title="" class="fsize14 c-333 ml5">9个吹毛求疵的要求！难道真是摄影师的通病。</a>	</h4></li>
+								</ul>
+							</div>
+						</section>
+						<!-- /热门问答排行 -->
+					</div>
+				</aside>
+			</div>
+		</section>
+		<!-- foot start -->
+		<div class="foot clearboth">
+			<div class="f_center">
+				<div class="f_c_info">
+					<ul class="clearboth ft_nav">
+						<li class="fl">
+							<a href="#">商务合作</a>
+						</li>
+						<li class="fl">
+							<a href="#">意见反馈</a>
+						</li>
+						<li class="fl">
+							<a href="#">关于我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">联系我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">版权声明</a>
+						</li>
+						<li class="fl">
+							<a href="#">隐私保护</a>
+						</li>
+					</ul>
+					<p class="c_i_copy">
+						本站素材源自网络，如有侵权请扫取下方微信二维码联系作者.
+					</p>
+					<p class="c_i_copy">
+						Powered by © 广州现代信息工程职业技术学院 .曾董
+					</p>
+					<div class="ft_icon_logo">
+						<a href="#" class="ft_iconbox fl ft_posi">
+							<i class="iconfont icon-weixin"></i>
+							<div class="ft_hidden_show">
+
+							</div>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-xinlang"></i>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-QQ"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- foot end -->
+
+		<a href="#" onclick="gotoTop();return false;" class="totop" title="回到顶部"></a>
+	</body>
+
+</html>

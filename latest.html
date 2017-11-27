@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>咔嚓-记录美好瞬间。</title>
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_nw0x7gdcs9z77gb9.css">
+		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/blocksit.min.js"></script>
+		<script>
+			$(document).ready(function() {
+
+				//blocksit define
+				$(window).load(function() {
+					$('#container').BlocksIt({
+						numOfCol: 5,
+						offsetX: 8,
+						offsetY: 8,
+						blockElement: '.grid'
+					});
+				});
+
+				//window resize
+				var currentWidth = 1180;
+				$(window).resize(function() {
+					var winWidth = $(window).width();
+					var conWidth;
+					if(winWidth < 660) {
+						conWidth = 440;
+						col = 2
+					} else if(winWidth < 880) {
+						conWidth = 660;
+						col = 3
+					} else if(winWidth < 1180) {
+						conWidth = 880;
+						col = 4;
+					} else {
+						conWidth = 1180;
+						col = 5;
+					}
+
+					if(conWidth != currentWidth) {
+						currentWidth = conWidth;
+						$('#container').width(conWidth);
+						$('#container').BlocksIt({
+							numOfCol: col,
+							offsetX: 8,
+							offsetY: 8
+						});
+					}
+				});
+			});
+		</script>
+
+	</head>
+
+	<body>
+		<!-- header start -->
+		<div class="header">
+			<div class="h_nav clearboth">
+				<a href="#" class="h_n_logo fl">
+					<img src="img/logo.png">
+				</a>
+				<ul class="clearboth fl">
+					<li class="h_n_title fl">
+						<a href="index.html" class="h_n_txt">首页</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="#" class="h_n_txt" style="color:#3498db;transition:all .2s ease;">
+							发现
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="article.html" class="h_n_txt">
+							文章
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="question.html" class="h_n_txt">
+							问答
+							<i class="iconfont icon-n"></i>
+						</a>
+					</li>
+					<li class="h_n_title fl">
+						<a href="#" class="h_n_txt">
+							更多
+							<i class="iconfont icon-xiala-copy"></i>
+						</a>
+						<ul class="hiddbox">
+							<li>
+								<a href="#" class="hiddtxt">创意汇</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">话题</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">灵感</a>
+							</li>
+							<li>
+								<a href="#" class="hiddtxt">工具</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="h_n_register fr">
+					<a href="#" class="h_n_txt fl">
+						<span class="icon"><em>登录</em></span>
+					</a>
+					<a href="register.html" class="h_n_txt fl">
+						<span class="icon"><em>注册</em></span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="gray"></div>
+
+		<div class="popup" id="popup">
+
+			<div class="top_nav" id='top_nav'>
+				<div align="center">
+					<span>登录账号</span>
+					<a class="guanbi"></a>
+				</div>
+			</div>
+
+			<div class="min">
+
+				<div class="tc_login">
+
+					<div class="left">
+						<h4 align="center">扫一扫，联系我们</h4>
+						<div align="center"><img src="img/weixin.jpg" width="150" height="150" /></div>
+					</div>
+
+					<div class="right">
+						<form method="POST" name="form_login" target="_top">
+							<div align="center">
+								<a href="#">短信快捷登录</a>
+								<i class="icon-mobile-phone"></i>
+								<input type="text" name="name" id="name" required="required" placeholder="用户名" autocomplete="off" class="input_yh">
+								<input type="password" name="pass" id="pass" required="required" placeholder="密码" autocomplete="off" class="input_mm">
+							</div>
+							<dd>
+								<div align="center">
+									<a href="#">遇到登录问题</a>
+								</div>
+							</dd>
+							<div align="center">
+								<input type="submit" class="button" title="Sign In" value="登录">
+							</div>
+						</form>
+						<dd>
+							<div align="center">
+								<a href="register.html" target="_blank">立即注册</a>
+							</div>
+						</dd>
+						<hr align="center" />
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script type="text/javascript">
+			//窗口效果
+			//点击登录class为h_n_register 显示
+			$(".h_n_register").click(function() {
+				$("#gray").show();
+				$("#popup").show(); //查找ID为popup的DIV show()显示#gray
+				tc_center();
+			});
+			//点击关闭按钮
+			$("a.guanbi").click(function() {
+				$("#gray").hide();
+				$("#popup").hide(); //查找ID为popup的DIV hide()隐藏
+			})
+
+			//窗口水平居中
+			$(window).resize(function() {
+				tc_center();
+			});
+
+			function tc_center() {
+				var _top = ($(window).height() - $(".popup").height()) / 2;
+				var _left = ($(window).width() - $(".popup").width()) / 2;
+
+				$(".popup").css({
+					top: _top,
+					left: _left
+				});
+			}
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".top_nav").mousedown(function(e) {
+					$(this).css("cursor", "move"); //改变鼠标指针的形状 
+					var offset = $(this).offset(); //DIV在页面的位置 
+					var x = e.pageX - offset.left; //获得鼠标指针离DIV元素左边界的距离 
+					var y = e.pageY - offset.top; //获得鼠标指针离DIV元素上边界的距离 
+					$(document).bind("mousemove", function(ev) { //绑定鼠标的移动事件，因为光标在DIV元素外面也要有效果，所以要用doucment的事件，而不用DIV元素的事件 
+
+						$(".popup").stop(); //加上这个之后 
+
+						var _x = ev.pageX - x; //获得X轴方向移动的值 
+						var _y = ev.pageY - y; //获得Y轴方向移动的值 
+
+						$(".popup").animate({
+							left: _x + "px",
+							top: _y + "px"
+						}, 10);
+					});
+
+				});
+
+				$(document).mouseup(function() {
+					$(".popup").css("cursor", "default");
+					$(this).unbind("mousemove");
+				});
+			})
+		</script>
+		<!-- header end -->
+		<!-- wrapper start -->
+		<section id="wrapper">
+			<div class="wrapper">
+				<div class="s-order">
+					<div class="s-order-item">
+						<div class="s-item-tit hig-tit">分类：</div>
+						<div class="s-item-list">
+							<div class="filt-tab">
+								<a href="#" class="on">自然<i></i></a>
+								<a href="#">商业<i></i></a>
+								<a href="#">艺术<i></i></a>
+								<a href="#">会议<i></i></a>
+								<a href="#">生活<i></i></a>
+								<a href="#">婚礼<i></i></a>
+								<a href="#">新闻<i></i></a>
+								<a href="#">静物<i></i></a>
+								<a href="#">建筑<i></i></a>
+								<a href="#">动物<i></i></a>
+								<a href="#">军事<i></i></a>
+								<a href="#">广告<i></i></a>
+								<a href="#">都市<i></i></a>
+								<a href="#">自然<i></i></a>
+								<a href="#">商业<i></i></a>
+								<a href="#">艺术<i></i></a>
+								<a href="#">会议<i></i></a>
+								<a href="#">生活<i></i></a>
+								<a href="#">婚礼<i></i></a>
+								<a href="#">新闻<i></i></a>
+								<a href="#">静物<i></i></a>
+								<a href="#">建筑<i></i></a>
+								<a href="#">动物<i></i></a>
+								<a href="#">军事<i></i></a>
+								<a href="#">广告<i></i></a>
+								<a href="#">都市<i></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div id="container">
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img27.jpg" />
+				</div>
+				<strong>日照湖</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t1.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img26.jpg" />
+				</div>
+				<strong>天堂桥</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t2.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋天</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t3.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img23.jpg" />
+				</div>
+				<strong>冬天耳语</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t4.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img17.jpg" />
+				</div>
+				<strong>光</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t5.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img22.jpg" />
+				</div>
+				<strong>公鸡的牧场</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t6.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img16.jpg" />
+				</div>
+				<strong>秋光</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t7.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img21.jpg" />
+				</div>
+				<strong>黄昏</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t8.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img28.jpg" />
+				</div>
+				<strong>田间小屋</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t9.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img2.jpg" />
+				</div>
+				<strong>战场</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t10.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img24.jpg" />
+				</div>
+				<strong>周日黄昏</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t11.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img19.jpg" />
+				</div>
+				<strong>阳光，花朵</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t12.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img5.jpg" />
+				</div>
+				<strong>海滩</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t13.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img25.jpg" />
+				</div>
+				<strong>Flowers</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t14.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img20.jpg" />
+				</div>
+				<strong>Alone</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t1.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img27.jpg" />
+				</div>
+				<strong>日落湖</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t2.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img26.jpg" />
+				</div>
+				<strong>天堂桥</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t3.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋季</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t4.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img23.jpg" />
+				</div>
+				<strong>冬日物语</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t5.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋天</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t6.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img27.jpg" />
+				</div>
+				<strong>日落湖</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t2.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img26.jpg" />
+				</div>
+				<strong>天堂桥</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t3.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋季</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t4.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img23.jpg" />
+				</div>
+				<strong>冬日物语</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t5.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t6.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img27.jpg" />
+				</div>
+				<strong>日落湖</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t2.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img26.jpg" />
+				</div>
+				<strong>天堂桥</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t3.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋天</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t4.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img23.jpg" />
+				</div>
+				<strong>冬日物语</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t5.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<div class="grid">
+				<div class="imgholder">
+					<img src="img/img15.jpg" />
+				</div>
+				<strong>秋天</strong>
+				<p>
+					<span class="zy">原创</span>
+					<span class="icon"><i class="iconfont icon-yuedu"></i><em>3229</em></span>
+					<span class="icon"><i class="iconfont icon-pinglun"></i><em>6</em></span>
+					<span class="icon"><i class="iconfont icon-dianzan"></i><em>42</em></span>
+				</p>
+				<p class="mt5">
+					<a href="#" class="h_pic"><img src="img/t6.jpg" alt="" width="24" height="24"></a>
+					<a href="#" class="h_uname">NPC</a>
+					<i class="c-333">世界仍然孤独。你若没有失约，在老地方等我。</i>
+				</p>
+			</div>
+			<!---->
+		</div>
+
+		<!-- foot start -->
+		<div class="foot clearboth">
+			<div class="f_center">
+				<div class="f_c_info">
+					<ul class="clearboth ft_nav">
+						<li class="fl">
+							<a href="#">商务合作</a>
+						</li>
+						<li class="fl">
+							<a href="#">意见反馈</a>
+						</li>
+						<li class="fl">
+							<a href="#">关于我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">联系我们</a>
+						</li>
+						<li class="fl">
+							<a href="#">版权声明</a>
+						</li>
+						<li class="fl">
+							<a href="#">隐私保护</a>
+						</li>
+					</ul>
+					<p class="c_i_copy">
+						本站素材源自网络，如有侵权请扫取下方微信二维码联系作者.
+					</p>
+					<p class="c_i_copy">
+						Powered by © 广州现代信息工程职业技术学院 .曾董
+					</p>
+					<div class="ft_icon_logo">
+						<a href="#" class="ft_iconbox fl ft_posi">
+							<i class="iconfont icon-weixin"></i>
+							<div class="ft_hidden_show">
+
+							</div>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-xinlang"></i>
+						</a>
+						<a href="#" class="ft_iconbox fl">
+							<i class="iconfont icon-QQ"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- foot end -->
+
+		<a href="#" onclick="gotoTop();return false;" class="totop" title="回到顶部"></a>
+	</body>
+
+</html>
